@@ -25,11 +25,9 @@ let firstElement = 1;
 let maxItemOnPage = firstElement + 2;
 let aElementCounter = 0;
 
-// Display first data packakage
+// Display first data package
 blurryLoadingScreen();
 const lastNumbers = getLocateStorageitems();
-let startingElementinLastNumber = lastNumbers[0];
-
 let wasSearchUsed;
 let getLocateStorageitemsLng;
 let prevNextbtnClickCounter = 0;
@@ -41,7 +39,7 @@ if (lastNumbers[0] === null) {
 } else {
   getLocateStorageitemsLng = getLocateStorageitems()[0].length;
   wasSearchUsed = getLocateStorageitems()[1];
-  firstElement = startingElementinLastNumber[0];
+  firstElement = lastNumbers[0][0];
   compareFirstGeneratedElementCounter(backToMainMenu);
 }
 
@@ -97,16 +95,19 @@ searchElement.addEventListener("keydown", (e) => {
 });
 
 // Functions that display the person's cards
-async function runScriptsForGeneratePersons(buttonClicked) {
+async function runScriptsForGeneratePersons(buttonClicked = false) {
   try {
     aElementCounter = 0;
     let personData;
     let personUrl = [];
     for (let i = 0; i < 2; i++) {
+      console.log(lastNumbers);
+      console.log(lastNumbers[0]);
       displayButton(buttons, firstElement);
-
-      if (lastNumbers[0][i] === undefined && !buttonClicked) {
-        break;
+      if (lastNumbers[0] !== null && buttonClicked) {
+        if (lastNumbers[0][i] === undefined) {
+          break;
+        }
       }
       personData = await generatePeopleData(i, wasSearchUsed, peopleUrl, firstElement, lastNumbers);
       personUrl[i] = personData.url;
