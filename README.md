@@ -126,6 +126,7 @@ As mentioned earlier, this program has many different elements, which are the na
 - [Google Icons](https://fonts.google.com/icons)
 - [Vite](https://vitejs.dev/)
 - [Axios](https://www.npmjs.com/package/axios)
+- [Planet Images](https://www.pngwing.com/en/free-png-avvto)
 
 
 ### [Changes](#Table-of-content)
