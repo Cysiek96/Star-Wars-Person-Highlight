@@ -1,0 +1,202 @@
+@import url("./styles/animation/animations.css");
+body {
+  overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+main:not(.planet-site) {
+  height: 100%;
+  width: 100%;
+  background: url("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1193&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+main > section.goBackToMainView {
+  position: absolute;
+  width: 15%;
+  height: 5%;
+  top: 1.5%;
+  left: 2%;
+  background: linear-gradient(90deg, #013343 23%, #1479c1 66%);
+  color: #fff;
+  display: none;
+  border-radius: 10%;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  animation: appear 1.5s forwards;
+}
+
+article.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%;
+  width: 89%;
+  padding: 0 2%;
+  height: 100%;
+  margin: auto;
+  transition: all 0.5s ease-in;
+}
+main > div.search {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  height: 2%;
+  margin: auto;
+  padding: 0.5%;
+  cursor: pointer;
+}
+main > div.search > input {
+  color: rgba(255, 255, 255, 0.852);
+  width: 90%;
+  text-align: center;
+  padding: 2%;
+  margin: auto;
+  background: linear-gradient(90deg, #00171f 23%, #1479c1 66%);
+  outline: none;
+  border-radius: 10%;
+}
+
+main > div.search > span {
+  display: flex;
+  color: #fff;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  width: 10%;
+}
+
+body > section {
+  padding: 1%;
+  position: absolute;
+  background-color: #0077b6;
+  bottom: 5%;
+  right: 2%;
+  width: 20%;
+  height: 15%;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(90deg, rgba(0, 23, 31, 1) 23%, rgba(20, 121, 193, 1) 66%);
+  box-shadow: 2px 2px 10px #e5e5e5, -1px -1px 2px #e5e5e5;
+  color: #fff;
+  animation: appearInformation 5s;
+}
+
+div.loading-text {
+  color: #fff;
+  position: absolute;
+  top: 42.5%;
+  left: 32%;
+  text-align: center;
+  font-size: 50px;
+}
+article.container > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+p {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+
+article.container > div.person-data > section > p > strong {
+  text-transform: capitalize;
+}
+h3 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 3px 5px #fca311;
+}
+
+a {
+  text-decoration-line: underline;
+  text-decoration-color: #fca311;
+  color: inherit;
+}
+
+/*  */
+article.container > button {
+  width: 150px;
+  height: 150px;
+  box-shadow: 2px 2px 10px #e5e5e5, -1px -1px 2px #e5e5e5;
+  border-radius: 50% 50%;
+  border: none;
+  background: linear-gradient(128deg, rgba(0, 23, 31, 1) 23%, rgba(0, 52, 89, 1) 66%);
+  color: #fff;
+  font: large Arial, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.5%;
+  transition: all 2s ease-in-out;
+  position: absolute;
+  bottom: 40%;
+  display: none;
+  padding: 0.8%;
+  animation: appear 3s;
+}
+
+article.container > button:hover {
+  padding: 2%;
+  transition: all 0.7s ease-in-out;
+  box-shadow: 10px 7px 40px #e5e5e5, -10px 7px 40px #e5e5e5, 10px -7px 40px #e5e5e5, -10px -7px 40px #d5d5d5;
+}
+
+article.container > button:nth-of-type(1) {
+  left: -5%;
+  justify-content: end;
+}
+article.container > button:nth-of-type(1):hover {
+  transform: translate(20%, -25%);
+}
+article.container > button:nth-of-type(2) {
+  right: -5%;
+  justify-content: start;
+}
+article.container > button:nth-of-type(2):hover {
+  transform: translate(-20%, -25%);
+}
+/*  */
+i {
+  margin: 0 3px;
+}
+
+/* Serching options */
+div.search > select {
+  position: absolute;
+  top: 60%;
+  right: 10%;
+  background: inherit;
+  border: none;
+  color: #e5e5e5;
+  font-weight: bold;
+}
+
+option {
+  background: rgba(21, 22, 78, 0.69);
+  color: #e5e5e5;
+}
+
+/* Google symbols required */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+.closeBtn {
+  color: #e5e5e5;
+  font-weight: bold;
+}
