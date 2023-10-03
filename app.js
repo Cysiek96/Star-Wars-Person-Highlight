@@ -102,7 +102,7 @@ async function runScriptsForGeneratePersons(buttonClicked = false) {
     let personUrl = [];
     for (let i = 0; i < 2; i++) {
       displayButton(buttons, firstElement);
-      if (lastNumbers[0] !== null && buttonClicked) {
+      if (lastNumbers[0] !== null && !buttonClicked) {
         if (lastNumbers[0][i] === undefined) {
           break;
         }
