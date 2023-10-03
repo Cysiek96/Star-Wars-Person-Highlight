@@ -101,8 +101,6 @@ async function runScriptsForGeneratePersons(buttonClicked = false) {
     let personData;
     let personUrl = [];
     for (let i = 0; i < 2; i++) {
-      console.log(lastNumbers);
-      console.log(lastNumbers[0]);
       displayButton(buttons, firstElement);
       if (lastNumbers[0] !== null && buttonClicked) {
         if (lastNumbers[0][i] === undefined) {
