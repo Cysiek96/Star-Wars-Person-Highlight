@@ -39,14 +39,19 @@ function createPlanetContent(planetData, buttons) {
       const terrainSplited = terrain.split(",");
       for (let i = 0; i < terrainSplited.length; i++) {
         if (picturesDictionary.includes(terrain)) {
-          imageEl.src = `../pictures/${terrain}.png`;
+          imageEl.src = `../static/pictures/${terrain}.png`;
           break;
         } else {
           imageEl.src = `../pictures/unknow.png`;
         }
       }
     }
-    element.innerText = fillData[i];
+
+    if (fillData[i] === "NaN") {
+      element.innerText = "Unspecified";
+    } else {
+      element.innerText = fillData[i];
+    }
   });
 }
 

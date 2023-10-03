@@ -67,8 +67,11 @@ export function createAndFillMachineElement(data, parentElement, machineType, cl
     const pEl = createPAndFillWithInformation(data, i);
     createElementsObj.divEl.appendChild(pEl);
   }
-
-  createElementsObj.h4El.innerHTML = `Cost: <b>${Number(data.cost_in_credits).toLocaleString()} $$</b>`;
+  let cost = Number(data.cost_in_credits).toLocaleString();
+  if (cost === "NaN") {
+    cost = "Unspecified";
+  }
+  createElementsObj.h4El.innerHTML = `Cost: <b>${cost} $$</b>`;
 
   for (let element in createElementsObj) {
     if (element !== "articleEl") {
@@ -94,7 +97,13 @@ function createPAndFillWithInformation(data, i) {
       value = `Max Speed: <b>${data.max_atmosphering_speed}[KM/H]</b>`;
       break;
   }
+
+  if (value === "NaN") {
+    value = "Unspecified";
+  }
+
   pEl.innerHTML = value;
+
   return pEl;
 }
 
