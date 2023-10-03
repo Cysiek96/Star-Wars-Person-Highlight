@@ -16,6 +16,8 @@
 [<img alt="Static Badge" src="https://img.shields.io/badge/Star-Wars-blue">](https://en.wikipedia.org/wiki/Star_Wars)
 [<img alt="Static Badge" src="https://img.shields.io/badge/Vite-0eb7eb">](https://vitejs.dev/)
 [<img alt="Static Badge" src="https://img.shields.io/badge/Axios-6a15d1">](https://www.npmjs.com/package/axios)
+[<img alt="Static Badge" src="https://img.shields.io/badge/Live%20Preview-black">](https://starwars-person-highlight.vercel.app/)
+
 
 This application is more advanced than the previous one, which can be found [here](#TUTAJ-MÓJ-GITHUB-do-poprzednije-wersji). It is also worth mentioning that this application is developed under special, more advanced rules, which you can read more about in this [section](#Special-Principles). <br>
 The project has a legitimate name, which is also listed in the site title. I have also changed quite a bit in the GUI, which I hope is clearer, containing more information that is related to that particular person from the Star Wars universe.  The graphics have been radically changed, including a person view, a planet view, and a new view of the machines, which are represented by spheres on the person card, has been added. I hope this view will be more user-friendly. I've also added some improvements, such as local storage services, a search bar where we can search for a specific person, a return button to the main menu, and error message display.  It's worth mentioning that all this data is generated dynamically - the data is retrieved using the [SWAPI application]((https://swapi.dev/)).
