@@ -78,12 +78,14 @@ searchElement.addEventListener("keydown", (e) => {
       searchingInProgress.searching = true;
       deletePresentObject();
       setTimeout(async () => {
-        await generateSearchingPersonCard(aElementCounter, peopleUrl, searchElement, container, searchingPlanetUrl, buttons, firstElement, backToMainMenu);
+        const elementsForPersonCard = { currentCounter: aElementCounter, personUrl: peopleUrl, searchElement: searchElement, container: container, searchingPlanetUrl: searchingPlanetUrl, buttons: buttons, firstElement: firstElement, backToMainMenu: backToMainMenu };
+        await generateSearchingPersonCard(elementsForPersonCard);
         searchingInProgress.enterPushed = false;
         searchingInProgress.searching = false;
         machineNames.forEach((machineName) => {
           displayProperMachineInformationCard(machineName, mainEl);
         });
+
         compareFirstGeneratedElementCounter(backToMainMenu);
       }, 2000);
     } else if (searchingInProgress.enterPushed === true) {
@@ -107,11 +109,13 @@ async function runScriptsForGeneratePersons(buttonClicked = false) {
           break;
         }
       }
-      personData = await generatePeopleData(i, wasSearchUsed, peopleUrl, firstElement, lastNumbers);
+      const elementForGenerating = { iteration: i, wasSearchUsed: wasSearchUsed, peopleUrl: peopleUrl, firstElement: firstElement, lastNumbers: lastNumbers, currentCounter: aElementCounter, buttons: buttons, searchingPlanetUrl: searchingPlanetUrl };
+      personData = await generatePeopleData(elementForGenerating);
       personUrl[i] = personData.url;
       await getHomeworldNameForSpecificPerson(personData);
       createAndFillPersonCard(personData, container);
-      createElementsForPlanetsDisplay(aElementCounter, searchingPlanetUrl, buttons, firstElement);
+      createElementsForPlanetsDisplay(elementForGenerating);
+
       updateLocaleStorage(personUrl, wasSearchUsed);
       aElementCounter++;
     }
