@@ -18,9 +18,9 @@ export function createElementsForPlanetsDisplay(object) {
     try {
       const data = await getPlanetInformation(e.target, object.searchingPlanetUrl);
       createPlanetContent(data, object.buttons);
-      eventListenerForRemovePlanetCard(object.buttons, object.firstElementCounter);
+      eventListenerForRemovePlanetCard(object.buttons, object.firstElement);
     } catch (err) {
-      eventListenerForRemovePlanetCard(object.buttons, object.firstElementCounter);
+      eventListenerForRemovePlanetCard(object.buttons, object.firstElement);
       differentStatus(String(err).split(","));
     }
   });
@@ -58,6 +58,7 @@ function createPlanetContent(planetData, buttons) {
 function eventListenerForRemovePlanetCard(buttons, firstElementCounter) {
   planetWindowBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log(firstElementCounter);
     displayButton(buttons, firstElementCounter);
     planetSite.style.animation = "none";
     planetSite.style.animation = "disapearPlanetSite 2.5s";
