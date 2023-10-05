@@ -19,7 +19,7 @@
 [<img alt="Static Badge" src="https://img.shields.io/badge/Live%20Preview-black">](https://starwars-person-highlight.vercel.app/)
 
 
-This application is more advanced than the previous one, which can be found [here](#TUTAJ-MÓJ-GITHUB-do-poprzednije-wersji). It is also worth mentioning that this application is developed under special, more advanced rules, which you can read more about in this [section](#Special-Principles). <br>
+This application is more advanced than the previous one, which can be found [here](#https://github.com/Cysiek96/Z2J/tree/main/StarWarsInfo). It is also worth mentioning that this application is developed under special, more advanced rules, which you can read more about in this [section](#Special-Principles). <br>
 The project has a legitimate name, which is also listed in the site title. I have also changed quite a bit in the GUI, which I hope is clearer, containing more information that is related to that particular person from the Star Wars universe.  The graphics have been radically changed, including a person view, a planet view, and a new view of the machines, which are represented by spheres on the person card, has been added. I hope this view will be more user-friendly. I've also added some improvements, such as local storage services, a search bar where we can search for a specific person, a return button to the main menu, and error message display.  It's worth mentioning that all this data is generated dynamically - the data is retrieved using the [SWAPI application]((https://swapi.dev/)).
 
 ## [Special Principles](#Table-of-content)
@@ -132,3 +132,6 @@ As mentioned earlier, this program has many different elements, which are the na
 
 
 ### [Changes](#Table-of-content)
+#### 05.10.2023:
+- Refactoring the data sent between one function and another. Now it should be easier to find a bug
+- Chhange some if conditions to more advanced
