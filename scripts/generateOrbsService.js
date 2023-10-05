@@ -16,7 +16,8 @@ export function displayProperMachineInformationCard(machineType, parentElement) 
           try {
             const url = e.target.parentNode.href;
             if (preventDisplayMoreThanOneVehicelInfoElement === 1) {
-              await generateMachineResults(url, parentElement, machineType, e.target, collectElements.personDataCard);
+              const objectForMachineResults = { url: url, parentElement: parentElement, machineType: machineType, clickedElement: e.target, personDataCard: collectElements.personDataCard };
+              await generateMachineResults(objectForMachineResults);
               classVeryficationAtVehiclesObj(e.target, collectElements.vehicles, "add");
             }
           } catch (err) {
@@ -45,43 +46,43 @@ export function displayProperMachineInformationCard(machineType, parentElement) 
   });
 }
 
-async function generateMachineResults(url, parentElement, machineType, clickedElement, personDataCard) {
+async function generateMachineResults(object) {
   try {
-    const { data } = await axios.get(url);
-    createAndFillMachineElement(data, parentElement, machineType, clickedElement, personDataCard);
+    const { data } = await axios.get(object.url);
+
+    const objectForFillMachineElement = { data: data, parentElement: object.parentElement, machineType: object.machineType, clickedElement: object.clickedElement, personDataCard: object.personDataCard };
+    createAndFillMachineElement(objectForFillMachineElement);
   } catch (err) {
     throw new Error(createReturningValue(err.response.status, err.name, url));
   }
 }
 
-export function createAndFillMachineElement(data, parentElement, machineType, clickedElement, personDataCard) {
+export function createAndFillMachineElement(object) {
   const dictrionary = { vehicles: "directions_boat", starships: "rocket" };
   const createElementsObj = { articleEl: document.createElement("article"), h3El: document.createElement("h3"), spanEl: document.createElement("span"), divEl: document.createElement("div"), h4El: document.createElement("h4") };
-  createElementsObj.h3El.innerText = data.name;
-  createElementsObj.spanEl.innerText = dictrionary[machineType];
+  createElementsObj.h3El.innerText = object.data.name;
+  createElementsObj.spanEl.innerText = dictrionary[object.machineType];
   createElementsObj.articleEl.classList.add("machineSection");
   createElementsObj.spanEl.classList.add("material-symbols-outlined");
-  createElementsObj.divEl.classList.add(machineType);
-
+  createElementsObj.divEl.classList.add(object.machineType);
   for (let i = 0; i < 3; i++) {
-    const pEl = createPAndFillWithInformation(data, i);
+    const pEl = createPAndFillWithInformation(object.data, i);
     createElementsObj.divEl.appendChild(pEl);
   }
-  let cost = Number(data.cost_in_credits).toLocaleString();
-  if (cost === "NaN") {
+  let cost = Number(object.data.cost_in_credits).toLocaleString();
+  if (isNaN(cost)) {
     cost = "Unspecified";
   }
   createElementsObj.h4El.innerHTML = `Cost: <b>${cost} $$</b>`;
-
   for (let element in createElementsObj) {
     if (element !== "articleEl") {
       createElementsObj.articleEl.appendChild(createElementsObj[element]);
     }
   }
 
-  const leftPercentage = compareWhichSideIsClicked(clickedElement, personDataCard);
+  const leftPercentage = compareWhichSideIsClicked(object.clickedElement, object.personDataCard);
   createElementsObj.articleEl.style.left = leftPercentage;
-  parentElement.appendChild(createElementsObj.articleEl);
+  object.parentElement.appendChild(createElementsObj.articleEl);
 }
 function createPAndFillWithInformation(data, i) {
   const pEl = document.createElement("p");
@@ -97,13 +98,7 @@ function createPAndFillWithInformation(data, i) {
       value = `Max Speed: <b>${data.max_atmosphering_speed}[KM/H]</b>`;
       break;
   }
-
-  if (value === "NaN") {
-    value = "Unspecified";
-  }
-
   pEl.innerHTML = value;
-
   return pEl;
 }
 

@@ -1,10 +1,10 @@
 import axios from "axios";
 import { createReturningValue } from "./errorHandling";
 
-export async function generatePeopleData(i, wasSearchUsed, peopleUrl, firstElement, lastNumbers) {
-  let searchPeropleByUrl = peopleUrl + `/${firstElement + i}/ `;
-  if (wasSearchUsed) {
-    searchPeropleByUrl = peopleUrl + `/${lastNumbers[0][i]}/`;
+export async function generatePeopleData(object) {
+  let searchPeropleByUrl = object.peopleUrl + `/${object.firstElement + object.iteration}/ `;
+  if (object.wasSearchUsed) {
+    searchPeropleByUrl = object.peopleUrl + `/${object.lastNumbers[0][object.iteration]}/`;
   }
   try {
     const peopleResult = await axios.get(searchPeropleByUrl);

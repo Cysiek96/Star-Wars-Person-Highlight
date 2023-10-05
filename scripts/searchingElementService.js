@@ -6,34 +6,37 @@ import { createElementsForPlanetsDisplay } from "./planetMenuLogic";
 import { displayButton } from "./planetMenuLogic";
 import { updateLocaleStorage } from "./localtorageService";
 
-export async function generateSearchingPersonCard(aElementCounter, peopleUrl, searchElement, container, searchingPlanetUrl, buttons, firstElement, backToMainMenu) {
-  aElementCounter = 0;
+export async function generateSearchingPersonCard(object) {
+  object.currentCounter = 0;
+
   let peopleUrls = [];
-  const searchingForCharacterUrl = peopleUrl + "/?search=" + searchElement.value;
+  const searchingForCharacterUrl = object.personUrl + "/?search=" + object.searchElement.value;
+
   try {
     const searchingResults = await axios.get(searchingForCharacterUrl);
     const dataResultsCounter = searchingResults.data.count;
     if (dataResultsCounter === 0) {
       throw new Error(createReturningValue(searchingResults.data.status, "You pass a data which not exist", searchingForCharacterUrl));
     }
-    generateInformationAboutSearching(searchElement);
-    searchElement.value = "";
-    searchElement.innerText = "";
+    generateInformationAboutSearching(object.searchElement);
+    object.searchElement.value = "";
+    object.searchElement.innerText = "";
     for (let i = 0; i < dataResultsCounter; i++) {
       peopleUrls[i] = searchingResults.data.results[i].url;
     }
     for (let i = 0; i < dataResultsCounter; i++) {
       const currentResult = searchingResults.data.results[i];
       await getHomeworldNameForSpecificPerson(currentResult);
-      createAndFillPersonCard(currentResult, container);
-      createElementsForPlanetsDisplay(aElementCounter, searchingPlanetUrl, buttons, firstElement);
+      createAndFillPersonCard(currentResult, object.container);
+      const elementsForPlanetDisplay = { currentCounter: object.currentCounter, searchingPlanetUrl: object.searchingPlanetUrl, buttons: object.buttons, firstElement: object.firstElement };
+      createElementsForPlanetsDisplay(elementsForPlanetDisplay);
       if (i >= 1) {
         break;
       }
     }
 
     updateLocaleStorage(peopleUrls, true);
-    displayButton(buttons, 1000);
+    displayButton(object.buttons, 1000);
   } catch (err) {
     differentStatus(String(err).split(","));
   }

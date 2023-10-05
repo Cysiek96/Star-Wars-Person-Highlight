@@ -5,22 +5,22 @@ const planetSite = document.querySelector("article.planet-site");
 const planetWindowBtn = document.querySelector("button.close-window-button");
 const picturesDictionary = ["gas giant", "volcanoes", "marslike", "swamp", "water"];
 
-export function createElementsForPlanetsDisplay(numeric, searchingPlanetUrl, buttons, firstElementCounter) {
+export function createElementsForPlanetsDisplay(object) {
   const planetLinks = document.querySelectorAll("a.planetLink");
-  planetLinks[numeric].addEventListener("click", (e) => {
+  planetLinks[object.currentCounter].addEventListener("click", (e) => {
     e.preventDefault();
   });
-  planetLinks[numeric].addEventListener("dblclick", async (e) => {
+  planetLinks[object.currentCounter].addEventListener("dblclick", async (e) => {
     e.preventDefault();
     planetSite.style.animation = "none";
     planetSite.style.display = "grid";
     planetSite.style.animation = "appear 2s";
     try {
-      const data = await getPlanetInformation(e.target, searchingPlanetUrl);
-      createPlanetContent(data, buttons);
-      eventListenerForRemovePlanetCard(buttons, firstElementCounter);
+      const data = await getPlanetInformation(e.target, object.searchingPlanetUrl);
+      createPlanetContent(data, object.buttons);
+      eventListenerForRemovePlanetCard(object.buttons, object.firstElementCounter);
     } catch (err) {
-      eventListenerForRemovePlanetCard(buttons, firstElementCounter);
+      eventListenerForRemovePlanetCard(object.buttons, object.firstElementCounter);
       differentStatus(String(err).split(","));
     }
   });
@@ -39,7 +39,7 @@ function createPlanetContent(planetData, buttons) {
       const terrainSplited = terrain.split(",");
       for (let i = 0; i < terrainSplited.length; i++) {
         if (picturesDictionary.includes(terrain)) {
-          imageEl.src = `../static/pictures/${terrain}.png`;
+          imageEl.src = `../pictures/${terrain}.png`;
           break;
         } else {
           imageEl.src = `../pictures/unknow.png`;
